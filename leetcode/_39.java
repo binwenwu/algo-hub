@@ -4,7 +4,6 @@ import java.util.List;
 
 public class _39 {
     public static void main(String[] args) {
-        
     }
 
     List<List<Integer>> res = new ArrayList<>();

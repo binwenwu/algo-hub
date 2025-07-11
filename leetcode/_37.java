@@ -1,7 +1,6 @@
 public class _37 {
 
     public static void main(String[] args) {
-
     }
     
     // 解法1：延用N皇后（_51.java）的思路，采用一维递归
