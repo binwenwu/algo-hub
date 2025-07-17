@@ -20,7 +20,7 @@ public class RC_u1 {
         // 1. 提取关键词
         // 使用正则表达式切分字符串，分隔符是一个或多个非字母数字的字符
         String[] potentialKeywords = allText.split("[^a-zA-Z0-9]+");
-
+        
         long totalSuspicionScore = 0;
         long totalLength = 0;
         long keywordCount = 0;

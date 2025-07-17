@@ -21,5 +21,7 @@ public class RC_u1 {
         }
 
         System.out.println(res1 + " " + res2);
+
+        sc.close();
     }
 }

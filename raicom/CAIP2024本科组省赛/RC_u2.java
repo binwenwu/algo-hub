@@ -19,6 +19,8 @@ public class RC_u2 {
             System.out.println((i + 1) + " " + points[i]);
         }
 
+        sc.close();
+
     }
 
     public static int getPoint(int rank) {
@@ -47,5 +49,7 @@ public class RC_u2 {
             return 1;
         }
         return 0;
+
+
     }
 }
