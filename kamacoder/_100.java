@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 public class _100 {
- static int[][] directions = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } }; // 上, 下, 左, 右
+    static int[][] directions = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } }; // 上, 下, 左, 右
     static int[][] island;
-    static boolean[][] visted;
+    static boolean[][] visited;
 
     static int temp = 0;
     static int max = 0;
@@ -15,9 +15,9 @@ public class _100 {
             if (nextX < 0 || nextX >= island.length || nextY < 0 || nextY >= island[0].length) {
                 continue;
             }
-            if (!visted[nextX][nextY] && island[nextX][nextY] == 1) {
+            if (!visited[nextX][nextY] && island[nextX][nextY] == 1) {
                 temp++;
-                visted[nextX][nextY] = true;
+                visited[nextX][nextY] = true;
                 dfs(nextX, nextY);
             }
         }
@@ -33,13 +33,13 @@ public class _100 {
                 island[i][j] = sc.nextInt();
             }
         }
-        visted = new boolean[n][m];
+        visited = new boolean[n][m];
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (!visted[i][j] && island[i][j] == 1) {
+                if (!visited[i][j] && island[i][j] == 1) {
                     temp = 1;
-                    visted[i][j] = true;
+                    visited[i][j] = true;
                     dfs(i, j);
                     max = Math.max(max, temp);
                 }
