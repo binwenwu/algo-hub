@@ -3,7 +3,7 @@ import java.util.List;
 
 public class _590 {
     public static void main(String[] args) {
-
+        
     }
 
     class Node {

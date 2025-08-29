@@ -53,6 +53,7 @@ public class RC_u3 {
         // 步骤 2: 如果没有找到问题水豚，说明初始状态合法，不需要加暖炉
         if (problemR == -1) {
             System.out.println("Too cold!");
+            sc.close();
             return;
         }
 
