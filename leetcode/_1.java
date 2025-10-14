@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.crypto.MacSpi;
+
 public class _1 {
     public static void main(String[] args) {
 
@@ -38,9 +40,15 @@ public class _1 {
         return new int[0];
     }
 
-    // 回溯算法练习
-    public void backtracking() {
-
+    public int[] twoSum3(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(target - nums[i])) {
+                return new int[] { map.get(target - nums[i]), i };
+            }
+            map.put(nums[i], i);
+        }
+        return null;
     }
 
 }

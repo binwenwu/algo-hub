@@ -7,50 +7,28 @@ public class _39 {
     }
 
     List<List<Integer>> res = new ArrayList<>();
-    List<Integer> temp = new ArrayList<>();
-    int sum = 0;
+    List<Integer> path = new ArrayList<>();
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         Arrays.sort(candidates); // 先进行排序
-        backtrack(0, target, candidates);
+        backtracking(candidates, target, 0, 0);
         return res;
     }
 
-    private void backtrack(int start, int target, int[] candidates) {
-        if (sum > target) {
-            return;
-        }
+    public void backtracking(int[] candidates, int target, int sum, int idx) {
+        // 找到了数字和为 target 的组合
         if (sum == target) {
-            res.add(new ArrayList<>(temp));
+            res.add(new ArrayList<>(path));
             return;
         }
 
-        for (int i = start; i < candidates.length; i++) {
-            temp.add(candidates[i]);
-            sum += candidates[i];
-            backtrack(i, target, candidates);
-            temp.remove(temp.size() - 1);
-            sum -= candidates[i];
-        }
-    }
-
-    // 可以做一下剪枝，首先是对candidates进行排序
-    private void backtrack2(int start, int target, int[] candidates) {
-
-        if (sum == target) {
-            res.add(new ArrayList<>(temp));
-            return;
-        }
-
-        for (int i = start; i < candidates.length; i++) {
-            if (sum + candidates[i] > target) {
+        for (int i = idx; i < candidates.length; i++) {
+            // 如果 sum + candidates[i] > target 就终止遍历
+            if (sum + candidates[i] > target)
                 break;
-            }
-            temp.add(candidates[i]);
-            sum += candidates[i];
-            backtrack(i, target, candidates);
-            temp.remove(temp.size() - 1);
-            sum -= candidates[i];
+            path.add(candidates[i]);
+            backtracking(candidates, target, sum + candidates[i], i);
+            path.remove(path.size() - 1); // 回溯，移除路径 path 最后一个元素
         }
     }
 }

@@ -26,16 +26,17 @@ public class _104 {
         }
     }
 
+    // 广度优先遍历
     public int maxDepth(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        int num = 0;
+        int ans = 0;
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
+            ans++;
             int size = queue.size();
-            num++;
             for (int i = 0; i < size; i++) {
                 TreeNode node = queue.poll();
                 if (node.left != null) {
@@ -46,46 +47,18 @@ public class _104 {
                 }
             }
         }
-        return num;
+        return ans;
     }
 
-    // 递归1
-    private int maxDeep = 0;
-
+    // 递归（深度优先遍历）
     public int maxDepth2(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        dfs(root, 1);
-        return maxDeep;
-    }
+        int lDepth = maxDepth(root.left);
+        int rDepth = maxDepth(root.right);
+        return Math.max(lDepth, rDepth) + 1;
 
-    private void dfs(TreeNode node, int deep) {
-        if (node == null) {
-            return;
-        }
-        if (node.left == null && node.right == null) {
-            if (deep > maxDeep) {
-                maxDeep = deep;
-            }
-        }
-        if (node.left != null) {
-            dfs(node.left, deep + 1);
-        }
-        if (node.right != null) {
-            dfs(node.right, deep + 1);
-        }
-    }
-
-    // 递归2
-    public int maxDepth3(TreeNode root) {
-        if (root == null) {
-            return 0;
-        } else {
-            int leftHeight = maxDepth3(root.left);
-            int rightHeight = maxDepth3(root.right);
-            return Math.max(leftHeight, rightHeight) + 1;
-        }
     }
 
 }

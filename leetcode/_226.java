@@ -26,31 +26,15 @@ public class _226 {
         }
     }
 
-    public TreeNode invertTree1(TreeNode root) {
+    // 递归
+    public TreeNode invertTree3(TreeNode root) {
         if (root == null) {
-            return root;
+            return null;
         }
-
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode node = queue.poll();
-                if (node.left != null || node.right != null) {
-                    TreeNode temp = node.left;
-                    node.left = node.right;
-                    node.right = temp;
-                }
-                if (node.left != null) {
-                    queue.offer(node.left);
-                }
-                if (node.right != null) {
-                    queue.offer(node.right);
-                }
-            }
-        }
-
+        TreeNode left = invertTree3(root.left);
+        TreeNode right = invertTree3(root.right);
+        root.left = right;
+        root.right = left;
         return root;
     }
 
@@ -71,15 +55,4 @@ public class _226 {
         swap(node.right);
     }
 
-    // 或者这样写递归
-    public TreeNode invertTree3(TreeNode root) {
-        if (root == null) {
-            return null;
-        }
-        TreeNode left = invertTree3(root.left);
-        TreeNode right = invertTree3(root.right);
-        root.left = right;
-        root.right = left;
-        return root;
-    }
 }

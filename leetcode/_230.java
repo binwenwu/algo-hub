@@ -1,8 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
-public class _94 {
+public class _230 {
     public static void main(String[] args) {
 
     }
@@ -27,28 +25,30 @@ public class _94 {
         }
     }
 
-    // 递归法
-    public List<Integer> inorderTraversal1(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-        inOrder(root, list);
-        return list;
+    // 中序遍历（递归写法）
+    int k;
+    int ans;
+
+    public int kthSmallest(TreeNode root, int k) {
+        this.k = k;
+        helper(root);
+        return ans;
     }
 
-    private void inOrder(TreeNode node, List<Integer> list) {
+    public void helper(TreeNode node) {
         if (node == null) {
             return;
         }
-        inOrder(node.left, list);
-        list.add(node.val);
-        inOrder(node.right, list);
+        helper(node.left); // 左
+        k--;
+        if (k == 0) {
+            ans = node.val;
+        }
+        helper(node.right); // 右
     }
 
-    // 迭代法
-    public List<Integer> inorderTraversal3(TreeNode root) {
-        List<Integer> res = new ArrayList<Integer>();
-        if (root == null) {
-            return res;
-        }
+    // 中序遍历（迭代写法）
+    public int kthSmallest2(TreeNode root, int k) {
         Stack<TreeNode> stack = new Stack<>();
         TreeNode node = root;
 
@@ -58,9 +58,12 @@ public class _94 {
                 node = node.left;
             }
             node = stack.pop();
-            res.add(node.val);
+            k--;
+            if (k == 0) {
+                break;
+            }
             node = node.right;
         }
-        return res;
+        return node.val;
     }
 }

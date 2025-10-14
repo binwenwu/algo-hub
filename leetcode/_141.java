@@ -15,20 +15,15 @@ public class _141 {
     }
 
     public boolean hasCycle1(ListNode head) {
-        if (head == null || head.next == null) {
-            return false;
-        }
-
-        ListNode left = head;
-        ListNode right = head;
-        while (right != null && right.next != null) {
-            left = left.next;
-            right = right.next.next;
-            if (right == left) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (slow == fast) {
                 return true;
             }
         }
-
         return false;
     }
 }

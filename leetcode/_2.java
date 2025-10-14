@@ -3,7 +3,7 @@ public class _2 {
         System.out.println("Hello, World!");
         System.out.println("Welcome to LeetCode Solutions!");
         System.out.println("This program demonstrates the solution for 'Add Two Numbers' problem.");
-        
+
     }
 
     public class ListNode {
@@ -24,18 +24,16 @@ public class _2 {
     }
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode head = null, tail = null;
+        ListNode virtualHead = new ListNode(0);
+        ListNode curr = virtualHead;
         int carry = 0;
         while (l1 != null || l2 != null) {
-            int n1 = l1 != null ? l1.val : 0;
-            int n2 = l2 != null ? l2.val : 0;
+            int n1 = l1 == null ? 0 : l1.val;
+            int n2 = l2 == null ? 0 : l2.val;
             int sum = n1 + n2 + carry;
-            if (head == null) {
-                head = tail = new ListNode(sum % 10);
-            } else {
-                tail.next = new ListNode(sum % 10);
-                tail = tail.next;
-            }
+
+            curr.next = new ListNode(sum % 10);
+            curr = curr.next;
             carry = sum / 10;
             if (l1 != null) {
                 l1 = l1.next;
@@ -45,9 +43,9 @@ public class _2 {
             }
         }
         if (carry > 0) {
-            tail.next = new ListNode(carry);
+            curr.next = new ListNode(carry);
         }
-        return head;
+        return virtualHead.next;
     }
 
 }

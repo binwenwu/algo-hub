@@ -2,6 +2,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
+import java.util.Stack;
 
 public class _144 {
     public static void main(String[] args) {
@@ -47,45 +48,24 @@ public class _144 {
     // 迭代法 1
     public List<Integer> preorderTraversal2(TreeNode root) {
         List<Integer> list = new ArrayList<>();
-        Deque<TreeNode> deque = new ArrayDeque<>();
+        Stack<TreeNode> stack = new Stack<>();
         if (root == null) {
             return list;
         }
+        stack.add(root);
 
-        deque.addLast(root);
-        while (!deque.isEmpty()) {
-            TreeNode temp = deque.removeLast();
+        while (!stack.isEmpty()) {
+            TreeNode temp = stack.pop();
             list.add(temp.val);
             if (temp.right != null) {
-                deque.addLast(temp.right);
+                stack.add(temp.right);
             }
             if (temp.left != null) {
-                deque.addLast(temp.left);
+                stack.add(temp.left);
             }
         }
 
         return list;
-    }
-
-    // 迭代法 2
-    public List<Integer> preorderTraversal3(TreeNode root) {
-        List<Integer> res = new ArrayList<Integer>();
-        if (root == null) {
-            return res;
-        }
-        Deque<TreeNode> stack = new ArrayDeque();
-        TreeNode node = root;
-
-        while (node != null || !stack.isEmpty()) {
-            while (node != null) {
-                res.add(node.val);
-                stack.add(node);
-                node = node.left;
-            }
-            node = stack.removeLast();
-            node = node.right;
-        }
-        return res;
     }
 
 }

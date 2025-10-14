@@ -26,12 +26,11 @@ public class _106 {
         }
     }
 
-
     // 递归的方法
     Map<Integer, Integer> inorderIndexMap = new HashMap<>();
     int postIndex;
 
-    public TreeNode buildTree1(int[] inorder, int[] postorder) {
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
         int n = inorder.length;
         for (int i = 0; i < n; i++) {
             inorderIndexMap.put(inorder[i], i);
@@ -53,7 +52,5 @@ public class _106 {
         root.left = helper(inorder, postorder, in_left, index - 1);
         return root;
     }
-
-    // 迭代
 
 }

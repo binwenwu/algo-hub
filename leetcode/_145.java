@@ -3,12 +3,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.List;
+import java.util.Stack;
 
 public class _145 {
     public static void main(String[] args) {
 
     }
-
 
     public class TreeNode {
         int val;
@@ -49,21 +49,20 @@ public class _145 {
     // 迭代法 1，先序遍历里面改变left和right的顺序，然后再把list反转
     public List<Integer> postorderTraversal2(TreeNode root) {
         List<Integer> list = new ArrayList<>();
-        Deque<TreeNode> deque = new ArrayDeque<>();
+        Stack<TreeNode> stack = new Stack<>();
         if (root == null) {
             return list;
         }
+        stack.add(root);
 
-
-        deque.addLast(root);
-        while (!deque.isEmpty()) {
-            TreeNode temp = deque.removeLast();
+        while (!stack.isEmpty()) {
+            TreeNode temp = stack.pop();
             list.add(temp.val);
-            if (temp.left != null) {
-                deque.addLast(temp.left);
-            }
             if (temp.right != null) {
-                deque.addLast(temp.right);
+                stack.add(temp.right);
+            }
+            if (temp.left != null) {
+                stack.add(temp.left);
             }
         }
 

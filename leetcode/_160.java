@@ -57,4 +57,16 @@ public class _160 {
 
         return null;
     }
+
+    // 双指针解法
+    public ListNode getIntersectionNode1(ListNode headA, ListNode headB) {
+        ListNode A = headA;
+        ListNode B = headB;
+        while (A != B) {
+            A = A == null ? headB : A.next;
+            B = B == null ? headA : B.next;
+        }
+
+        return A;
+    }
 }

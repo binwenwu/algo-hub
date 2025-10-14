@@ -22,7 +22,6 @@ public class _283 {
                 fast++;
             }
         }
-
-
     }
+    
 }

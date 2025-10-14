@@ -1,6 +1,7 @@
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.PriorityQueue;
 
 public class _239 {
     public static void main(String[] args) {
@@ -12,7 +13,7 @@ public class _239 {
     }
 
     // 单调队列
-    public int[] maxSlidingWindow1(int[] nums, int k) {
+    public int[] maxSlidingWindow2(int[] nums, int k) {
         int len = nums.length;
         int[] res = new int[len - k + 1];
         Deque<Integer> stack = new ArrayDeque<>();
@@ -40,6 +41,29 @@ public class _239 {
 
             stack.add(nums[i]);
             res[i - k + 1] = stack.getFirst();
+        }
+
+        return res;
+    }
+
+    // 优先队列
+    public int[] maxSlidingWindow1(int[] nums, int k) {
+        PriorityQueue<int[]> queue = new PriorityQueue<>((arr1, arr2) -> {
+            return arr1[0] != arr2[0] ? arr2[0] - arr1[0] : arr1[0] - arr2[0];
+        });
+
+        for (int i = 0; i < k; i++) {
+            queue.offer(new int[] { nums[i], i });
+        }
+
+        int[] res = new int[nums.length - k + 1];
+        res[0] = queue.peek()[0];
+        for (int i = k; i < nums.length; i++) {
+            queue.offer(new int[] { nums[i], i });
+            while (queue.peek()[1] <= i - k) {
+                queue.poll();
+            }
+            res[i - k + 1] = queue.peek()[0];
         }
 
         return res;

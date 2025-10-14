@@ -33,7 +33,7 @@ public class _108 {
         if (start > end) {
             return null;
         }
-        int mid = start + (end - start + 1) / 2;
+        int mid = (start + end) / 2;
         TreeNode root = new TreeNode(nums[mid]);
         root.left = helper(nums, start, mid - 1);
         root.right = helper(nums, mid + 1, end);
