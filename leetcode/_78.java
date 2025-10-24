@@ -17,9 +17,6 @@ public class _78 {
 
     private void backtrack(int start, int[] nums) {
         res.add(new ArrayList<>(temp));
-        if (start == nums.length) {
-            return;
-        }
         for (int i = start; i < nums.length; i++) {
             temp.add(nums[i]);
             backtrack(i + 1, nums);

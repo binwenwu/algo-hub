@@ -1,6 +1,7 @@
 
 
 public class _322 {
+
     public static void main(String[] args) {
 
     }

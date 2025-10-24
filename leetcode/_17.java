@@ -9,6 +9,9 @@ public class _17 {
     // 设置全局列表存储最后的结果
     List<String> list = new ArrayList<>();
 
+    // 每次迭代获取一个字符串，所以会涉及大量的字符串拼接，所以这里选择更为高效的 StringBuilder
+    StringBuilder temp = new StringBuilder();
+
     public List<String> letterCombinations(String digits) {
         if (digits == null || digits.length() == 0) {
             return list;
@@ -20,9 +23,6 @@ public class _17 {
         return list;
 
     }
-
-    // 每次迭代获取一个字符串，所以会涉及大量的字符串拼接，所以这里选择更为高效的 StringBuilder
-    StringBuilder temp = new StringBuilder();
 
     // 比如digits如果为"23",num 为0，则str表示2对应的 abc
     public void backTracking(String digits, String[] numString, int num) {

@@ -5,6 +5,7 @@ public class _62 {
 
     }
 
+    // DP
     public int uniquePaths1(int m, int n) {
         int[][] dp = new int[m][n];
         Arrays.fill(dp[0], 1);
@@ -21,7 +22,7 @@ public class _62 {
         return dp[m - 1][n - 1];
     }
 
-    // 空间优化
+    // DP（空间优化）
     public int uniquePaths2(int m, int n) {
         int[] dp = new int[n];
         Arrays.fill(dp, 1);

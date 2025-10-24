@@ -6,58 +6,35 @@ public class _131 {
 
     }
 
-    // 自己写的回溯，没有考虑任何优化
+    // 保持前几题一贯的格式， initialization
     List<List<String>> res = new ArrayList<>();
-    List<String> temp = new ArrayList<>();
+    List<String> cur = new ArrayList<>();
 
     public List<List<String>> partition(String s) {
-        backtrack2(0, s);
+        backtracking(s, 0, new StringBuilder());
         return res;
     }
 
-    private void backtrack(int start, String s) {
-        if (start == s.length() && temp.size() > 0) {
-            res.add(new ArrayList<>(temp));
+    private void backtracking(String s, int start, StringBuilder sb) {
+        // 因为是起始位置一个一个加的，所以结束时start一定等于s.length,因为进入backtracking时一定末尾也是回文，所以cur是满足条件的
+        if (start == s.length()) {
+            // 注意创建一个新的copy
+            res.add(new ArrayList<>(cur));
             return;
         }
+        // 像前两题一样从前往后搜索，如果发现回文，进入backtracking,起始位置后移一位，循环结束照例移除cur的末位
         for (int i = start; i < s.length(); i++) {
-            // 可以考虑用StringBuilder，而不是每次都 new 一个 String，参考 backtrack2
-            String curr = s.substring(start, i + 1);
-            if (check(curr)) {
-                temp.add(curr);
-                backtrack(i + 1, s);
-                temp.remove(temp.size() - 1);
-            }
-        }
-    }
-
-    private boolean check(String sb) {
-        for (int i = 0; i < sb.length() / 2; i++) {
-            if (sb.charAt(i) != sb.charAt(sb.length() - 1 - i)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private void backtrack2(int start, String s) {
-        if (start == s.length() && temp.size() > 0) {
-            res.add(new ArrayList<>(temp));
-            return;
-        }
-        StringBuilder sb = new StringBuilder();
-        for (int i = start; i < s.length(); i++) {
-            // 可以考虑用StringBuilder，而不是每次都 new 一个 String
             sb.append(s.charAt(i));
-            if (check2(sb)) {
-                temp.add(sb.toString());
-                backtrack2(i + 1, s);
-                temp.remove(temp.size() - 1);
+            if (check(sb)) {
+                cur.add(sb.toString());
+                backtracking(s, i + 1, new StringBuilder());
+                cur.remove(cur.size() - 1);
             }
         }
     }
 
-    private boolean check2(StringBuilder sb) {
+    // helper method, 检查是否是回文
+    private boolean check(StringBuilder sb) {
         for (int i = 0; i < sb.length() / 2; i++) {
             if (sb.charAt(i) != sb.charAt(sb.length() - 1 - i)) {
                 return false;

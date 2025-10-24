@@ -13,7 +13,7 @@ public class _239 {
     }
 
     // 单调队列
-    public int[] maxSlidingWindow2(int[] nums, int k) {
+    public int[] maxSlidingWindow1(int[] nums, int k) {
         int len = nums.length;
         int[] res = new int[len - k + 1];
         Deque<Integer> stack = new ArrayDeque<>();
@@ -47,7 +47,7 @@ public class _239 {
     }
 
     // 优先队列
-    public int[] maxSlidingWindow1(int[] nums, int k) {
+    public int[] maxSlidingWindow2(int[] nums, int k) {
         PriorityQueue<int[]> queue = new PriorityQueue<>((arr1, arr2) -> {
             return arr1[0] != arr2[0] ? arr2[0] - arr1[0] : arr1[0] - arr2[0];
         });

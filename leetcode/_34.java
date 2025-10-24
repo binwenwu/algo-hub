@@ -19,7 +19,7 @@ public class _34 {
     }
 
     int length = nums.length;
-    if (nums[0] > target || nums[length - 1] < target) {
+    if (length == 0 || nums[0] > target || nums[length - 1] < target) {
       return new int[] { -1, -1 };
     }
 

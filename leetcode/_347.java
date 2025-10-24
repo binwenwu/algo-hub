@@ -22,6 +22,7 @@ public class _347 {
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {// 大顶堆需要对所有元素进行排序
             pq.add(new int[] { entry.getKey(), entry.getValue() });
         }
+
         int[] ans = new int[k];
         for (int i = 0; i < k; i++) { // 依次从队头弹出k个,就是出现频率前k高的元素
             ans[i] = pq.poll()[0];

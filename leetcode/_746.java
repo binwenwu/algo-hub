@@ -1,9 +1,12 @@
+
+
 public class _746 {
     public static void main(String[] args) {
 
     }
 
-    public int minCostClimbingStairs(int[] cost) {
+    // 动态规划
+    public int minCostClimbingStairs2(int[] cost) {
         int n = cost.length;
         int[] dp = new int[n + 1];
 
@@ -13,7 +16,7 @@ public class _746 {
         return dp[n];
     }
 
-    public int minCostClimbingStairs2(int[] cost) {
+    public int minCostClimbingStairs(int[] cost) {
         int n = cost.length;
         int dp1 = 0, dp2 = 0;
 

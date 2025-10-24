@@ -15,13 +15,9 @@ public class _739 {
         int[] result = new int[n];
         Deque<Integer> stack = new ArrayDeque<>();
         for (int i = 0; i < n; i++) {
-            while (!stack.isEmpty()) {
-                if (temperatures[i] > temperatures[stack.peek()]) {
-                    int temp = stack.pop();
-                    result[temp] = i - temp;
-                } else {
-                    break;
-                }
+            while (!stack.isEmpty() && temperatures[i] > temperatures[stack.peek()]) {
+                int temp = stack.pop();
+                result[temp] = i - temp;
             }
             stack.push(i);
         }

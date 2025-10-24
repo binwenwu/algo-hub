@@ -8,6 +8,7 @@ public class _22 {
 
     List<String> res = new ArrayList<>();
     StringBuilder path = new StringBuilder();
+    
 
     public List<String> generateParenthesis(int n) {
         backtracking(n, 0, 0);
