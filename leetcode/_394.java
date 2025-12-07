@@ -3,6 +3,7 @@ import java.util.LinkedList;
 public class _394 {
     public static void main(String[] args) {
 
+                        
     }
 
     public String decodeString(String s) {

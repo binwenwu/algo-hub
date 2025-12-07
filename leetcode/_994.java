@@ -18,7 +18,7 @@ public class _994 {
                 if (grid[i][j] == 1) {
                     fresh++; // 统计新鲜橘子个数
                 } else if (grid[i][j] == 2) {
-                    q.add(new int[]{i, j}); // 一开始就腐烂的橘子
+                    q.add(new int[] { i, j }); // 一开始就腐烂的橘子
                 }
             }
         }
@@ -35,7 +35,7 @@ public class _994 {
                     if (0 <= i && i < m && 0 <= j && j < n && grid[i][j] == 1) { // 新鲜橘子
                         fresh--;
                         grid[i][j] = 2; // 变成腐烂橘子
-                        q.add(new int[]{i, j});
+                        q.add(new int[] { i, j });
                     }
                 }
             }
@@ -43,5 +43,5 @@ public class _994 {
 
         return fresh > 0 ? -1 : ans;
 
-
+    }
 }

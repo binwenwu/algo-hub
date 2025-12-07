@@ -1,18 +1,16 @@
-public class _26 {
+public class _80 {
     public static void main(String[] args) {
-
+        
     }
-    
-    // 双指针
+
     public int removeDuplicates(int[] nums) {
         int len = nums.length;
-        if (len == 1) {
-            return 1;
+        if (len <= 2) {
+            return len;
         }
-        int slow = 1;
-        int fast = 1;
+        int slow = 2, fast = 2;
         while (fast < len) {
-            if (nums[fast] != nums[fast - 1]) {
+            if (nums[fast] != nums[slow - 2]) {
                 nums[slow] = nums[fast];
                 slow++;
                 fast++;
@@ -20,7 +18,7 @@ public class _26 {
                 fast++;
             }
         }
-
         return slow;
+
     }
 }

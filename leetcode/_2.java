@@ -1,8 +1,6 @@
 public class _2 {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
-        System.out.println("Welcome to LeetCode Solutions!");
-        System.out.println("This program demonstrates the solution for 'Add Two Numbers' problem.");
 
     }
 

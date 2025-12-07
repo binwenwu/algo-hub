@@ -48,7 +48,7 @@ public class _215 {
             nums[i] = nums[j];
             nums[j] = tmp;
         }
-        if (j >= k) {
+        if (k <= j) {
             return quickselect(nums, l, j, k);
         } else {
             // 因为这里 k 指的是元素的下标，不是指第几小，所以左右侧都是传入k

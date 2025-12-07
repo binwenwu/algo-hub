@@ -1,4 +1,3 @@
-import _148.ListNode;
 
 public class _148 {
 
