@@ -6,7 +6,7 @@ public class _44 {
         int n = scanner.nextInt();
         int m = scanner.nextInt();
         int[][] land = new int[n][m];
-        
+
         int[] x_sum = new int[n]; // 记录x方向前缀累计合
         int[] y_sum = new int[m]; // 记录y方向前缀累计合
         int temp_sum = 0;
@@ -30,7 +30,7 @@ public class _44 {
         }
 
         for (int i = 1; i <= m - 1; i++) {
-            tempDifference = Math.abs(y_sum[m-1]- 2 * y_sum[i-1]);
+            tempDifference = Math.abs(y_sum[m - 1] - 2 * y_sum[i - 1]);
             minDifference = Math.min(minDifference, tempDifference);
         }
 
@@ -38,7 +38,7 @@ public class _44 {
             tempDifference = Math.abs(x_sum[n - 1] - 2 * x_sum[j - 1]);
             minDifference = Math.min(minDifference, tempDifference);
         }
-        
+
         System.out.println(minDifference);
 
         scanner.close();
