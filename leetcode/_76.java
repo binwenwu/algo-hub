@@ -1,53 +1,53 @@
 
 public class _76 {
-  public static void main(String[] args) {
-    _76 solution = new _76();
-    String s = "A";
-    String t = "A";
-    String res = solution.minWindow(s, t);
-    System.out.println("res: " + res);
-  }
-
-  public String minWindow(String S, String t) {
-    int[] cntS = new int[128]; // s 子串字母的出现次数
-    int[] cntT = new int[128]; // t 中字母的出现次数
-    for (char c : t.toCharArray()) {
-      cntT[c]++;
+    public static void main(String[] args) {
+        _76 solution = new _76();
+        String s = "A";
+        String t = "A";
+        String res = solution.minWindow(s, t);
+        System.out.println("res: " + res);
     }
 
-    char[] s = S.toCharArray();
-    int m = s.length;
-    int ansLeft = -1;
-    int ansRight = m;
-
-    int left = 0;
-    for (int right = 0; right < m; right++) { // 移动子串右端点
-      cntS[s[right]]++; // 右端点字母移入子串
-      while (isCovered(cntS, cntT)) { // 涵盖
-        if (right - left < ansRight - ansLeft) { // 找到更短的子串
-          ansLeft = left; // 记录此时的左右端点
-          ansRight = right;
+    public String minWindow(String S, String t) {
+        int[] cntS = new int[128]; // s 子串字母的出现次数
+        int[] cntT = new int[128]; // t 中字母的出现次数
+        for (char c : t.toCharArray()) {
+            cntT[c]++;
         }
-        cntS[s[left]]--; // 左端点字母移出子串
-        left++;
-      }
+
+        char[] s = S.toCharArray();
+        int m = s.length;
+        int ansLeft = -1;
+        int ansRight = m;
+
+        int left = 0;
+        for (int right = 0; right < m; right++) { // 移动子串右端点
+            cntS[s[right]]++; // 右端点字母移入子串
+            while (isCovered(cntS, cntT)) { // 涵盖
+                if (right - left < ansRight - ansLeft) { // 找到更短的子串
+                    ansLeft = left; // 记录此时的左右端点
+                    ansRight = right;
+                }
+                cntS[s[left]]--; // 左端点字母移出子串
+                left++;
+            }
+        }
+
+        return ansLeft < 0 ? "" : S.substring(ansLeft, ansRight + 1);
     }
 
-    return ansLeft < 0 ? "" : S.substring(ansLeft, ansRight + 1);
-  }
-
-  private boolean isCovered(int[] cntS, int[] cntT) {
-    for (int i = 'A'; i <= 'Z'; i++) {
-      if (cntS[i] < cntT[i]) {
-        return false;
-      }
+    private boolean isCovered(int[] cntS, int[] cntT) {
+        for (int i = 'A'; i <= 'Z'; i++) {
+            if (cntS[i] < cntT[i]) {
+                return false;
+            }
+        }
+        for (int i = 'a'; i <= 'z'; i++) {
+            if (cntS[i] < cntT[i]) {
+                return false;
+            }
+        }
+        return true;
     }
-    for (int i = 'a'; i <= 'z'; i++) {
-      if (cntS[i] < cntT[i]) {
-        return false;
-      }
-    }
-    return true;
-  }
 
 }

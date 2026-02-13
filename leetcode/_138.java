@@ -18,18 +18,22 @@ public class _138 {
         }
     }
 
-    Map<Node, Node> cachedNode = new HashMap<Node, Node>();
+    Map<Node, Node> map = new HashMap<>();
 
     public Node copyRandomList(Node head) {
         if (head == null) {
-            return null;
+            return head;
         }
-        if (!cachedNode.containsKey(head)) {
-            Node headNew = new Node(head.val);
-            cachedNode.put(head, headNew);
-            headNew.next = copyRandomList(head.next);
-            headNew.random = copyRandomList(head.random);
+
+        if (map.containsKey(head)) {
+            return map.get(head);
+        } else {
+            Node node = new Node(head.val);
+            map.put(head, node);
+            node.next = copyRandomList(head.next);
+            node.random = copyRandomList(head.random);
+            return node;
         }
-        return cachedNode.get(head);
+
     }
 }

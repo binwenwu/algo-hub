@@ -13,25 +13,19 @@ public class _142 {
         }
     }
 
-    public ListNode detectCycle1(ListNode head) {
-
-        if (head == null || head.next == null) {
-            return null;
-        }
-
-        ListNode left = head;
-        ListNode right = head;
-        ListNode temp = head;
-
-        while (right != null && right.next != null) {
-            left = left.next;
-            right = right.next.next;
-            if (right == left) {
-                while (temp != right) {
-                    temp = temp.next;
-                    right = right.next;
+    public ListNode detectCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        ListNode start = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                while (start != fast) {
+                    start = start.next;
+                    fast = fast.next;
                 }
-                return temp;
+                return fast;
             }
         }
 

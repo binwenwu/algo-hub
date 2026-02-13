@@ -20,29 +20,8 @@ public class _19 {
         }
     }
 
-    // 暴力解法：但是用虚拟头指针，这样不用判断头部的情况
-    public ListNode removeNthFromEnd1(ListNode head, int n) {
-        ListNode virtual = new ListNode(0);
-        virtual.next = head;
-        int length = 0;
-        ListNode curr = virtual;
-        while (curr != null) {
-            length = length + 1;
-            curr = curr.next;
-        }
-        int index = length - n;
-        curr = virtual;
-        for (int i = 0; i < index - 1; i++) {
-            curr = curr.next;
-        }
-
-        curr.next = curr.next.next;
-        return virtual.next;
-
-    }
-
     // 双指针
-    public ListNode removeNthFromEnd2(ListNode head, int n) {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode dummy = new ListNode(0, head);
         ListNode fast = head;
         /**
@@ -51,7 +30,7 @@ public class _19 {
          * 下面fast=null的时候，slow指向的是倒数第n个
          */
         ListNode slow = dummy;
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < n; i++) {
             fast = fast.next;
         }
         while (fast != null) {

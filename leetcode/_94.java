@@ -44,7 +44,7 @@ public class _94 {
     }
 
     // 迭代法
-    public List<Integer> inorderTraversal3(TreeNode root) {
+    public List<Integer> inorderTraversal2(TreeNode root) {
         List<Integer> res = new ArrayList<Integer>();
         if (root == null) {
             return res;

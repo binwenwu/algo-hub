@@ -7,7 +7,6 @@ public class _56 {
 
     }
 
-    // 自己想的解法
     public int[][] merge1(int[][] intervals) {
         if (intervals.length == 1) {
             return intervals;

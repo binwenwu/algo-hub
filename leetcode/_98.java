@@ -24,6 +24,7 @@ public class _98 {
         }
     }
 
+    // 方法一： 递归判断
     public boolean isValidBST1(TreeNode root) {
         return helper(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
@@ -40,11 +41,12 @@ public class _98 {
         return helper(node.left, lower, node.val) && helper(node.right, node.val, upper);
     }
 
+    // 方法二：
     // 要知道中序遍历下，输出的二叉搜索树节点的数值是有序序列
     // 有了这个特性，验证二叉搜索树，就相当于变成了判断一个序列是不是递增的了
     long prev = Long.MIN_VALUE;
 
-    public boolean isValidBST(TreeNode root) {
+    public boolean isValidBST2(TreeNode root) {
         return inorder(root);
     }
 

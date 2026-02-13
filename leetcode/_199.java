@@ -28,41 +28,8 @@ public class _199 {
         }
     }
 
-    /**
-     * 思路：层序遍历的时候，判断是否遍历到单层的最后面的元素，如果是，就放进result数组中，随后返回result就可以了。
-     * 
-     * @param root
-     * @return
-     */
-    public List<Integer> rightSideView1(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        if (root == null) {
-            return res;
-        }
-
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode node = queue.poll();
-                if (node.left != null) {
-                    queue.offer(node.left);
-                }
-                if (node.right != null) {
-                    queue.offer(node.right);
-                }
-                if (i == size - 1) {
-                    res.add(node.val);
-                }
-            }
-        }
-        return res;
-    }
-
-    // 跟方法1差不多，但是先放右子树，这样就不需要if i = length -1 判断了
-    public List<Integer> rightSideView2(TreeNode root) {
+    // 层序遍历， 但是先放右子树
+    public List<Integer> rightSideView(TreeNode root) {
         List<Integer> res = new ArrayList<>();
         if (root == null) {
             return res;

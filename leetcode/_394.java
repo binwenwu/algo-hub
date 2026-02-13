@@ -1,37 +1,36 @@
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class _394 {
     public static void main(String[] args) {
 
-                        
     }
 
     public String decodeString(String s) {
-        StringBuilder res = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         int multi = 0;
-        LinkedList<Integer> stack_multi = new LinkedList<>();
-        LinkedList<String> stack_res = new LinkedList<>();
-        for (Character c : s.toCharArray()) {
+        Deque<Integer> mul_stack = new ArrayDeque<>();
+        Deque<String> s_stack = new ArrayDeque<>();
+        for (char c : s.toCharArray()) {
             if (c >= '0' && c <= '9') {
                 multi = multi * 10 + Integer.parseInt(c + "");
             } else if (c == '[') {
-                stack_multi.addLast(multi);
-                stack_res.addLast(res.toString());
+                mul_stack.push(multi);
+                s_stack.push(sb.toString());
                 multi = 0;
-                res.setLength(0);
+                sb.setLength(0);
             } else if (c == ']') {
-                StringBuilder tmp = new StringBuilder();
-                int cur_multi = stack_multi.removeLast();
-                for (int i = 0; i < cur_multi; i++) {
-                    tmp.append(res);
+                StringBuilder temp = new StringBuilder();
+                int m = mul_stack.pop();
+                for (int i = 0; i < m; i++) {
+                    temp.append(sb);
                 }
-                // "2[abc]3[cd]ef"，像这种情况第一次的时候，stack_res弹出的是""字符串，所以不会报 NoSuchElementException
-                res = new StringBuilder(stack_res.removeLast() + tmp);
+                sb = new StringBuilder(s_stack.pop() + temp);
             } else {
-                res.append(c);
+                sb.append(c);
             }
 
         }
-        return res.toString();
+        return sb.toString();
     }
 }

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class _39 {
-    
+
     List<List<Integer>> ans = new ArrayList<>();
     List<Integer> temp = new ArrayList<>();
     int sum = 0;

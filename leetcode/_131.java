@@ -33,12 +33,15 @@ public class _131 {
         }
     }
 
-    // helper method, 检查是否是回文
-    private boolean check(StringBuilder sb) {
-        for (int i = 0; i < sb.length() / 2; i++) {
-            if (sb.charAt(i) != sb.charAt(sb.length() - 1 - i)) {
+    public boolean check(StringBuilder sb) {
+        int left = 0;
+        int right = sb.length() - 1;
+        while (left < right) {
+            if (sb.charAt(left) != sb.charAt(right)) {
                 return false;
             }
+            right--;
+            left++;
         }
         return true;
     }

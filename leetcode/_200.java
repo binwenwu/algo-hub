@@ -3,7 +3,7 @@ import java.util.Queue;
 
 public class _200 {
     public static void main(String[] args) {
-        
+
     }
 
     // 深度优先遍历
@@ -29,7 +29,6 @@ public class _200 {
         dfs(grid, i - 1, j);
         dfs(grid, i, j - 1);
     }
-
 
     // 广度优先遍历
     public int numIslands2(char[][] grid) {

@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class _144 {
     public static void main(String[] args) {
-        
+
     }
 
     public class TreeNode {
@@ -43,7 +43,7 @@ public class _144 {
         preOrder(node.right, list);
     }
 
-    // 迭代法 1
+    // 迭代法
     public List<Integer> preorderTraversal2(TreeNode root) {
         List<Integer> list = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();

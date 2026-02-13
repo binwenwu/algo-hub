@@ -3,36 +3,36 @@ public class _79 {
 
     }
 
+    int[][] used;
+
     public boolean exist(char[][] board, String word) {
-        int m = board.length, n = board[0].length;
-        int[][] visited = new int[m][n]; // 记录访问次数
-        char[] words = word.toCharArray();
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (dfs(board, words, visited, i, j, 0))
+        used = new int[board.length][board[0].length];
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (backtrack(board, word, 0, i, j)) {
                     return true;
+                }
             }
         }
+
         return false;
     }
 
-    boolean dfs(char[][] board, char[] word, int[][] visited, int i, int j, int k) {
-        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length)
+    private boolean backtrack(char[][] board, String word, int curr, int x, int y) {
+        if (x < 0 || y < 0 || x >= board.length || y >= board[0].length) {
             return false;
-        if (board[i][j] != word[k])
+        }
+        if (board[x][y] != word.charAt(curr) || used[x][y] >= 1) {
             return false;
-        if (visited[i][j] >= 1) // 每个单元格最多使用一次
-            return false;
-
-        if (k == word.length - 1)
+        }
+        if (curr == word.length() - 1) {
             return true;
+        }
 
-        visited[i][j]++; // 标记使用
-        boolean res = dfs(board, word, visited, i + 1, j, k + 1)
-                || dfs(board, word, visited, i - 1, j, k + 1)
-                || dfs(board, word, visited, i, j + 1, k + 1)
-                || dfs(board, word, visited, i, j - 1, k + 1);
-        visited[i][j]--; // 回溯还原
-        return res;
+        used[x][y]++;
+        boolean isTrue = backtrack(board, word, curr + 1, x + 1, y) || backtrack(board, word, curr + 1, x - 1, y)
+                || backtrack(board, word, curr + 1, x, y + 1) || backtrack(board, word, curr + 1, x, y - 1);
+        used[x][y]--;
+        return isTrue;
     }
 }

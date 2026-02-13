@@ -29,7 +29,7 @@ public class _230 {
     int k;
     int ans;
 
-    public int kthSmallest(TreeNode root, int k) {
+    public int kthSmallest1(TreeNode root, int k) {
         this.k = k;
         helper(root);
         return ans;
@@ -43,6 +43,7 @@ public class _230 {
         k--;
         if (k == 0) {
             ans = node.val;
+            return;
         }
         helper(node.right); // 右
     }
@@ -50,20 +51,20 @@ public class _230 {
     // 中序遍历（迭代写法）
     public int kthSmallest2(TreeNode root, int k) {
         Stack<TreeNode> stack = new Stack<>();
-        TreeNode node = root;
-
-        while (node != null || !stack.isEmpty()) {
-            while (node != null) {
-                stack.add(node);
-                node = node.left;
+        TreeNode curr = root;
+        while (curr != null || !stack.isEmpty()) {
+            while (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
             }
-            node = stack.pop();
+            curr = stack.pop();
             k--;
             if (k == 0) {
-                break;
+                return curr.val;
             }
-            node = node.right;
+            curr = curr.right;
         }
-        return node.val;
+
+        return -1;
     }
 }
