@@ -1,5 +1,4 @@
 
-
 public class _322 {
 
     public static void main(String[] args) {
@@ -24,7 +23,7 @@ public class _322 {
             }
         }
 
-        return dp[n][amount] == Integer.MAX_VALUE ? -1 : dp[n][amount];
+        return dp[n][amount] == amount + 1 ? -1 : dp[n][amount];
     }
 
 }

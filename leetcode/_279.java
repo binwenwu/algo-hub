@@ -4,14 +4,15 @@ public class _279 {
     }
 
     public int numSquares(int n) {
-        int[] f = new int[n + 1];
-        for (int i = 1; i <= n; i++) {
-            int minn = Integer.MAX_VALUE;
+        int[] dp = new int[n + 1];
+        dp[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            int min = Integer.MAX_VALUE;
             for (int j = 1; j * j <= i; j++) {
-                minn = Math.min(minn, f[i - j * j]);
+                min = Math.min(min, dp[i - j * j] + 1);
             }
-            f[i] = minn + 1;
+            dp[i] = min;
         }
-        return f[n];
+        return dp[n];
     }
 }

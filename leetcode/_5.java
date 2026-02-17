@@ -5,39 +5,32 @@ public class _5 {
 
     // 中心扩散法
     public String longestPalindrome(String s) {
-        if (s == null || s.length() == 0) {
-            return "";
-        }
-        int strLen = s.length();
-        int left = 0;
-        int right = 0;
-        int len = 1;
-        int maxStart = 0;
+        int start = 0;
         int maxLen = 0;
-
-        for (int i = 0; i < strLen; i++) {
-            left = i - 1;
-            right = i + 1;
+        for (int i = 0; i < s.length(); i++) {
+            int len = 1;
+            int left = i - 1;
+            int right = i + 1;
             while (left >= 0 && s.charAt(left) == s.charAt(i)) {
                 len++;
                 left--;
             }
-            while (right < strLen && s.charAt(right) == s.charAt(i)) {
+            while (right < s.length() && s.charAt(right) == s.charAt(i)) {
                 len++;
                 right++;
             }
-            while (left >= 0 && right < strLen && s.charAt(right) == s.charAt(left)) {
+            while (right < s.length() && left >= 0 && s.charAt(left) == s.charAt(right)) {
                 len = len + 2;
-                left--;
                 right++;
+                left--;
             }
             if (len > maxLen) {
                 maxLen = len;
-                maxStart = left;
+                start = left + 1;
             }
-            len = 1;
         }
-        return s.substring(maxStart + 1, maxStart + maxLen + 1);
+
+        return s.substring(start, start + maxLen);
 
     }
 

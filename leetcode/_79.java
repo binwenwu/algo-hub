@@ -19,14 +19,16 @@ public class _79 {
     }
 
     private boolean backtrack(char[][] board, String word, int curr, int x, int y) {
+
+        if (curr == word.length()) {
+            return true;
+        }
+
         if (x < 0 || y < 0 || x >= board.length || y >= board[0].length) {
             return false;
         }
         if (board[x][y] != word.charAt(curr) || used[x][y] >= 1) {
             return false;
-        }
-        if (curr == word.length() - 1) {
-            return true;
         }
 
         used[x][y]++;

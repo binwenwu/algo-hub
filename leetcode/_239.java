@@ -22,7 +22,7 @@ public class _239 {
             while (!stack.isEmpty() && nums[i] > stack.getLast()) {
                 stack.removeLast();
             }
-            stack.add(nums[i]);
+            stack.offerLast(nums[i]);
         }
 
         res[0] = stack.getFirst();
@@ -39,7 +39,7 @@ public class _239 {
                 stack.removeLast();
             }
 
-            stack.add(nums[i]);
+            stack.offerLast(nums[i]);
             res[i - k + 1] = stack.getFirst();
         }
 

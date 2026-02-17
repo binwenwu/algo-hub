@@ -15,7 +15,7 @@ public class _152 {
             fMax[i] = Math.max(Math.max(fMax[i - 1] * x, fMin[i - 1] * x), x);
             fMin[i] = Math.min(Math.min(fMax[i - 1] * x, fMin[i - 1] * x), x);
         }
-        int ans = -11;
+        int ans = fMax[0];
         for (int num : fMax) {
             ans = Math.max(ans, num);
         }

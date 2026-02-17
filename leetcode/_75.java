@@ -10,22 +10,21 @@ public class _75 {
      * 之后，此时，所有的 2 都出现在数组的尾部，这样我们就完成了排序；
      */
     public void sortColors(int[] nums) {
-        int n = nums.length;
-        int ptr = 0;
-        for (int i = 0; i < n; ++i) {
+        int left = 0;
+        for (int i = 0; i < nums.length; i++) {
             if (nums[i] == 0) {
                 int temp = nums[i];
-                nums[i] = nums[ptr];
-                nums[ptr] = temp;
-                ++ptr;
+                nums[i] = nums[left];
+                nums[left] = temp;
+                ++left;
             }
         }
-        for (int i = ptr; i < n; ++i) {
+        for (int i = left; i < nums.length; i++) {
             if (nums[i] == 1) {
                 int temp = nums[i];
-                nums[i] = nums[ptr];
-                nums[ptr] = temp;
-                ++ptr;
+                nums[i] = nums[left];
+                nums[left] = temp;
+                ++left;
             }
         }
     }

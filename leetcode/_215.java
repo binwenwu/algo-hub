@@ -1,28 +1,15 @@
-import java.util.PriorityQueue;
+
 
 public class _215 {
     public static void main(String[] args) {
 
     }
 
-    // 优先队列
-    public int findKthLargest1(int[] nums, int k) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>((pair1, pair2) -> pair2 - pair1);
-        for (int num : nums) {
-            pq.offer(num);
-        }
-        while (k > 1) {
-            pq.poll();
-            k--;
-        }
-        return pq.poll();
-    }
-
     // 基于快速排序的选择方法
-    public int findKthLargest2(int[] _nums, int k) {
-        int n = _nums.length;
+    public int findKthLargest(int[] nums, int k) {
+        int n = nums.length;
         // 第 k 大也就是升序排序后下标为 n - k 的元素
-        return quickselect(_nums, 0, n - 1, n - k);
+        return quickselect(nums, 0, n - 1, n - k);
     }
 
     public int quickselect(int[] nums, int l, int r, int k) {
@@ -56,7 +43,5 @@ public class _215 {
         }
 
     }
-
-    // 基于堆排序的选择方法
 
 }
