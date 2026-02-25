@@ -13,7 +13,7 @@ public class _394 {
         Deque<String> s_stack = new ArrayDeque<>();
         for (char c : s.toCharArray()) {
             if (c >= '0' && c <= '9') {
-                multi = multi * 10 + Integer.parseInt(c + "");
+                multi = multi * 10 + (c - '0');
             } else if (c == '[') {
                 mul_stack.push(multi);
                 s_stack.push(sb.toString());

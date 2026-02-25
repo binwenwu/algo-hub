@@ -9,7 +9,7 @@ public class _912 {
     }
 
     public void quicksort(int[] nums, int l, int r) {
-        if (l >= r) {
+        if (l == r) {
             return;
         }
 

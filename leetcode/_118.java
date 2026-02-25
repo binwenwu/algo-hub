@@ -8,9 +8,9 @@ public class _118 {
 
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
-        for (int i = 0; i < numRows; ++i) {
+        for (int i = 0; i < numRows; i++) {
             List<Integer> row = new ArrayList<Integer>();
-            for (int j = 0; j <= i; ++j) {
+            for (int j = 0; j <= i; j++) {
                 if (j == 0 || j == i) {
                     row.add(1);
                 } else {

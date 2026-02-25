@@ -7,7 +7,7 @@ public class _56 {
 
     }
 
-    public int[][] merge1(int[][] intervals) {
+    public int[][] merge(int[][] intervals) {
         if (intervals.length == 1) {
             return intervals;
         }

@@ -12,10 +12,9 @@ public class _27 {
 
     // 双指针
     public int removeElement(int[] nums, int val) {
-        int n = nums.length - 1;
         int left = 0;
         int right = 0;
-        while (right <= n) {
+        while (right < nums.length) {
             if (nums[right] != val) {
                 nums[left] = nums[right]; // 可以直接覆盖，不需要交换
                 right++;

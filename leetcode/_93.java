@@ -6,45 +6,45 @@ public class _93 {
 
     }
 
-    // 自己写的回溯
+    // 回溯
     List<String> res = new ArrayList<>();
-    List<String> temp = new ArrayList<>();
-    StringBuilder sb = new StringBuilder();
+    List<Integer> temp = new ArrayList<>();
 
     public List<String> restoreIpAddresses(String s) {
         if (s.length() > 12) {
             return res;
         }
-        backtrack(0, s, 0);
+        backtrack(0, s);
         return res;
     }
 
-    private void backtrack(int start, String s, int has) {
+    private void backtrack(int start, String s) {
 
         if (start == s.length()) {
-            if (has == 4) {
-                for (int i = 0; i < 3; i++) {
-                    sb.append(temp.get(i)).append(".");
+            if (temp.size() == 4) {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < 4; i++) {
+                    sb.append(temp.get(i));
+                    if (i != 3) {
+                        sb.append('.');
+                    }
                 }
-                sb.append(temp.get(3));
                 res.add(sb.toString());
-                sb.setLength(0);
-                return;
-            } else {
-                return;
             }
+            return;
         }
 
         if (s.charAt(start) == '0') {
-            temp.add("0");
-            backtrack(start + 1, s, has + 1);
+            temp.add(0);
+            backtrack(start + 1, s);
             temp.remove(temp.size() - 1);
         } else {
-            for (int i = start; i < start + 3 && i < s.length(); i++) {
-                String curr = s.substring(start, i + 1);
-                if (Integer.valueOf(curr) <= 255) {
+            int curr = 0;
+            for (int i = start; i < s.length(); i++) {
+                curr = curr * 10 + (s.charAt(i) - '0');
+                if (curr <= 255) {
                     temp.add(curr);
-                    backtrack(i + 1, s, has + 1);
+                    backtrack(i + 1, s);
                     temp.remove(temp.size() - 1);
                 } else {
                     break;

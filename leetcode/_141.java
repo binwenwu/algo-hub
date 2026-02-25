@@ -14,7 +14,7 @@ public class _141 {
         }
     }
 
-    public boolean hasCycle1(ListNode head) {
+    public boolean hasCycle(ListNode head) {
         ListNode fast = head;
         ListNode slow = head;
         while (fast != null && fast.next != null) {

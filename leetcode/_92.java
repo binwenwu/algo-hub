@@ -21,26 +21,32 @@ public class _92 {
     }
 
     public ListNode reverseBetween(ListNode head, int left, int right) {
-        // 哨兵节点
-        ListNode dummy = new ListNode(0, head);
-        // 找到left的前一个节点
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        // 先找到left的前一个节点
+        ListNode dummy = new ListNode(0, head); // 哨兵节点
         ListNode p0 = dummy;
         for (int i = 0; i < left - 1; i++) {
             p0 = p0.next;
         }
-        // 这里跟206题一样
-        ListNode pre = null;
-        ListNode cur = p0.next;
+
+        // 反转left和right之间的节点
+        ListNode curr = p0.next;
+        ListNode prev = null;
+        ListNode temp;
         for (int i = 0; i < right - left + 1; i++) {
-            ListNode nxt = cur.next;
-            cur.next = pre; // 每次循环只修改一个 next，方便大家理解
-            pre = cur;
-            cur = nxt;
+            temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
         }
 
-        // 然后最后再让left指向cur，p0指向pre
-        p0.next.next = cur;
-        p0.next = pre;
+        // left指向curr，left的前一个节点指向prev
+        p0.next.next = curr;
+        p0.next = prev;
+
         return dummy.next;
 
     }
