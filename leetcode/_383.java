@@ -2,25 +2,19 @@ public class _383 {
     public static void main(String[] args) {
 
     }
-    
 
-    public boolean canConstruct1(String ransomNote, String magazine) {
-        if (ransomNote.length() > magazine.length()) {
-            return false;
+    public boolean canConstruct(String ransomNote, String magazine) {
+        int[] count = new int[26];
+
+        // 统计 magazine
+        for (char c : magazine.toCharArray()) {
+            count[c - 'a']++;
         }
 
-        int[] arr = new int[26];
-
-        for (int i = 0; i < magazine.length(); i++) {
-            arr[magazine.charAt(i) - 'a']++;
-        }
-
-        for (int i = 0; i < ransomNote.length(); i++) {
-            arr[ransomNote.charAt(i) - 'a']--;
-        }
-
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] < 0) {
+        // 消耗 ransomNote
+        for (char c : ransomNote.toCharArray()) {
+            count[c - 'a']--;
+            if (count[c - 'a'] < 0) {
                 return false;
             }
         }

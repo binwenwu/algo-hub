@@ -1,0 +1,33 @@
+public class _125 {
+    public static void main(String[] args) {
+        _125 s = new _125();
+        s.isPalindrome(".*(");
+    }
+
+    // 双指针
+    public boolean isPalindrome(String s) {
+        int left = 0, right = s.length() - 1;
+
+        while (left < right) {
+
+            while (left < right && !Character.isLetterOrDigit(s.charAt(left))) {
+                left++;
+            }
+
+            while (left < right && !Character.isLetterOrDigit(s.charAt(right))) {
+                right--;
+            }
+
+            System.out.println(s.charAt(left));
+
+            if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
+                return false;
+            }
+
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+}

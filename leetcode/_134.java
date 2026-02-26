@@ -3,42 +3,27 @@ public class _134 {
 
     }
 
-    // 暴力解法
-    public int canCompleteCircuit1(int[] gas, int[] cost) {
-        int n = gas.length;
-        for (int i = 0; i < n; i++) {
-            int rest = gas[i] - cost[i]; // 当前剩余油量
-            int index = (i + 1) % n;
-            while (rest > 0 && index != i) { // 模拟从第 i 个加油站出发
-                rest += gas[index] - cost[index];
-                index = (index + 1) % n;
-            }
-            if (rest >= 0 && index == i) {
-                return i; // 成功绕一圈
-            }
-        }
-        return -1; // 无法绕一圈
-    }
+    /**
+     * 贪心
+     */
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int total = 0; // 全局油量差
+        int current = 0; // 当前起点累计油量
+        int start = 0; // 起点
 
-    // 贪心（方式一）
-    public int canCompleteCircuit2(int[] gas, int[] cost) {
-        int Sum = 0;
-        int temp = 0;
-        int result = 0;
         for (int i = 0; i < gas.length; i++) {
-            temp += (gas[i] - cost[i]);
-            Sum += (gas[i] - cost[i]);
-            if (temp < 0) {
-                temp = 0;
-                result = i + 1;
+            int diff = gas[i] - cost[i];
+            total += diff;
+            current += diff;
+
+            // 当前起点失败
+            if (current < 0) {
+                start = i + 1;
+                current = 0;
             }
         }
-        if (Sum < 0) {
-            return -1;
-        }
-        return result;
-    }
 
-         
+        return total >= 0 ? start : -1;
+    }
 
 }

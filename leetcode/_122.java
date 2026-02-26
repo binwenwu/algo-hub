@@ -15,25 +15,16 @@ public class _122 {
      * prices[0])。
      * 
      * 从图中可以发现，其实我们需要收集每天的正利润就可以，收集正利润的区间，就是股票买卖的区间
-     * 
-     * @param prices
-     * @return
      */
     public int maxProfit(int[] prices) {
-        if (prices.length == 1) {
-            return 0;
-        }
-        int result = 0;
-        int temp = 0;
-
+        int res = 0;
         for (int i = 1; i < prices.length; i++) {
-            temp = prices[i] - prices[i - 1];
-            if (temp > 0) {
-                result += temp;
+            int profit = prices[i] - prices[i - 1];
+            if (profit > 0) {
+                res += profit;
             }
         }
-
-        return result;
+        return res;
     }
 
 }
