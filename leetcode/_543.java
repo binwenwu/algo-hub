@@ -24,11 +24,11 @@ public class _543 {
         }
     }
 
-    int ans = 1;
+    int ans = 0;
 
     public int diameterOfBinaryTree(TreeNode root) {
         depth(root);
-        return ans - 1;
+        return ans;
     }
 
     public int depth(TreeNode node) {
@@ -37,7 +37,7 @@ public class _543 {
         }
         int left = depth(node.left);
         int right = depth(node.right);
-        ans = Math.max(ans, left + right + 1);
+        ans = Math.max(ans, left + right);
         return Math.max(left, right) + 1;
     }
 }

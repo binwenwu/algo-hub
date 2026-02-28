@@ -74,3 +74,92 @@ class LRUCache {
         x.next.prev = x;
     }
 }
+
+// 带TTL的LRU缓存
+class TTLLRUCache {
+    private static class Node {
+        int key, value;
+        long expireTime; // 新增TTL
+        Node prev, next;
+
+        Node(int k, int v, long expireTime) {
+            key = k;
+            value = v;
+            this.expireTime = expireTime;
+        }
+    }
+
+    private final int capacity;
+    private final Node dummy = new Node(0, 0, 0); // 哨兵节点
+    private final Map<Integer, Node> keyToNode = new HashMap<>();
+
+    public TTLLRUCache(int capacity) {
+        this.capacity = capacity;
+        dummy.prev = dummy;
+        dummy.next = dummy;
+    }
+
+    public int get(int key) {
+        Node node = getNode(key);
+        if (node == null)
+            return -1;
+
+        // 判断是否过期
+        if (isExpired(node)) {
+            keyToNode.remove(key);
+            remove(node);
+            return -1;
+        }
+
+        return node.value;
+    }
+
+    // 新增 ttl 参数
+    public void put(int key, int value, long ttlMillis) {
+        long expireTime = System.currentTimeMillis() + ttlMillis;
+
+        Node node = getNode(key);
+        if (node != null) { // 已存在
+            node.value = value;
+            node.expireTime = expireTime; // 更新过期时间
+            return;
+        }
+
+        node = new Node(key, value, expireTime);
+        keyToNode.put(key, node);
+        pushFront(node);
+
+        if (keyToNode.size() > capacity) {
+            Node backNode = dummy.prev;
+            keyToNode.remove(backNode.key);
+            remove(backNode);
+        }
+    }
+
+    // 获取节点并移动到头部（保持你的设计）
+    private Node getNode(int key) {
+        Node node = keyToNode.get(key);
+        if (node == null)
+            return null;
+
+        remove(node);
+        pushFront(node);
+        return node;
+    }
+
+    private boolean isExpired(Node node) {
+        return System.currentTimeMillis() > node.expireTime;
+    }
+
+    private void remove(Node x) {
+        x.prev.next = x.next;
+        x.next.prev = x.prev;
+    }
+
+    private void pushFront(Node x) {
+        x.prev = dummy;
+        x.next = dummy.next;
+        x.prev.next = x;
+        x.next.prev = x;
+    }
+}

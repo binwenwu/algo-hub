@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class _49 {
     public static void main(String[] args) {
-
+        
     }
 
     public List<List<String>> groupAnagrams(String[] strs) {

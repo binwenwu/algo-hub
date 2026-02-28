@@ -6,62 +6,24 @@ public class _202 {
 
     }
 
-    public boolean isHappy1(int n) {
-        if (n == -1 || n == 1) {
-            return true;
+    public boolean isHappy(int n) {
+        Set<Integer> seen = new HashSet<>();
+
+        while (n != 1 && !seen.contains(n)) {
+            seen.add(n);
+            n = getNext(n);
         }
 
-        Set<Integer> set = new HashSet<>();
-
-        String num = "" + n;
-
-        while (true) {
-            int sum = 0;
-            for (int i = 0; i < num.length(); i++) {
-                int temp = Integer.valueOf(num.charAt(i) + "");
-                sum = sum + temp * temp;
-            }
-            if (sum == 1) {
-                return true;
-            }
-
-            if (set.contains(sum)) {
-                return false;
-            }
-
-            set.add(sum);
-
-            num = "" + sum;
-        }
+        return n == 1;
     }
 
-    // 其实可以不用字符串String来获取每一位，而是采用对10进行取模来依次获取每一位，每取完一位，就除10
-    public boolean isHappy2(int n) {
-        if (n == -1 || n == 1) {
-            return true;
+    private int getNext(int n) {
+        int sum = 0;
+        while (n > 0) {
+            int d = n % 10;
+            sum += d * d;
+            n /= 10;
         }
-
-        Set<Integer> set = new HashSet<>();
-        
-        while (true) {
-            int sum = 0;
-            while (n > 0) {
-                int temp = n % 10;
-                sum = sum + temp * temp;
-                n = n / 10;
-            }
-            
-            if (sum == 1) {
-                return true;
-            }
-
-            if (set.contains(sum)) {
-                return false;
-            }
-
-            set.add(sum);
-
-            n = sum;
-        }
+        return sum;
     }
 }

@@ -26,8 +26,19 @@ public class _104 {
         }
     }
 
-    // 广度优先遍历
+    // 递归（深度优先遍历）
     public int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int lDepth = maxDepth(root.left);
+        int rDepth = maxDepth(root.right);
+        return Math.max(lDepth, rDepth) + 1;
+
+    }
+
+    // 广度优先遍历
+    public int maxDepth2(TreeNode root) {
         if (root == null) {
             return 0;
         }
@@ -48,17 +59,6 @@ public class _104 {
             }
         }
         return ans;
-    }
-
-    // 递归（深度优先遍历）
-    public int maxDepth2(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        int lDepth = maxDepth(root.left);
-        int rDepth = maxDepth(root.right);
-        return Math.max(lDepth, rDepth) + 1;
-
     }
 
 }

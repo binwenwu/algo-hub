@@ -9,7 +9,6 @@ public class _155 {
 }
 
 class MinStack {
-    // 注意不要使用 Stack 类，因为它继承自 Vector，是同步的，会导致一些性能问题
     private final Deque<int[]> st = new ArrayDeque<>();
 
     public MinStack() {
