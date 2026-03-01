@@ -29,17 +29,17 @@ public class _572 {
     // 广度优先遍历，每个节点都拿去和subRoot比较是否相同
     public boolean isSubtree1(TreeNode root, TreeNode subRoot) {
         Deque<TreeNode> stack = new LinkedList<>();
-        stack.add(root);
+        stack.push(root);
         while (!stack.isEmpty()) {
-            TreeNode node = stack.removeLast();
+            TreeNode node = stack.pop();
             if (isSameTree(node, subRoot)) {
                 return true;
             }
             if (node.left != null) {
-                stack.add(node.left);
+                stack.push(node.left);
             }
             if (node.right != null) {
-                stack.add(node.right);
+                stack.push(node.right);
             }
         }
         return false;

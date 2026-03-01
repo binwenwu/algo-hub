@@ -1,7 +1,7 @@
 
 public class _222 {
     public static void main(String[] args) {
-
+        System.out.println(1.0 / 3 * 3);
     }
 
     public class TreeNode {
@@ -28,8 +28,10 @@ public class _222 {
         if (root == null) {
             return 0;
         }
-        int num = 0;
+        int left = countNodes(root.left);
+        int right = countNodes(root.right);
 
-        return (num + 1) + countNodes(root.left) + countNodes(root.right);
+        return 1 + left + right;
     }
+
 }

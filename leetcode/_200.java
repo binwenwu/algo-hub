@@ -7,7 +7,7 @@ public class _200 {
     }
 
     // 深度优先遍历
-    public int numIslands1(char[][] grid) {
+    public int numIslands(char[][] grid) {
         int count = 0;
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {

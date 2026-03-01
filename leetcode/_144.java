@@ -1,6 +1,7 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
-import java.util.Stack;
 
 public class _144 {
     public static void main(String[] args) {
@@ -46,20 +47,20 @@ public class _144 {
     // 迭代法
     public List<Integer> preorderTraversal2(TreeNode root) {
         List<Integer> list = new ArrayList<>();
-        Stack<TreeNode> stack = new Stack<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
         if (root == null) {
             return list;
         }
-        stack.add(root);
+        stack.push(root);
 
         while (!stack.isEmpty()) {
             TreeNode temp = stack.pop();
             list.add(temp.val);
             if (temp.right != null) {
-                stack.add(temp.right);
+                stack.push(temp.right);
             }
             if (temp.left != null) {
-                stack.add(temp.left);
+                stack.push(temp.left);
             }
         }
 

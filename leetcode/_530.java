@@ -24,12 +24,12 @@ public class _530 {
         }
     }
 
-    int min = Integer.MAX_VALUE;
-    int last = Integer.MIN_VALUE;
+    int res = Integer.MAX_VALUE;
+    int last = -100001;
 
     public int getMinimumDifference(TreeNode root) {
         helper(root);
-        return min;
+        return res;
     }
 
     private void helper(TreeNode node) {
@@ -37,10 +37,8 @@ public class _530 {
             return;
         }
         helper(node.left);
-        int temp = Math.abs(node.val - last);
-        min = temp < min ? temp : min;
+        res = Math.min(res, Math.abs(node.val - last));
         last = node.val;
         helper(node.right);
-
     }
 }

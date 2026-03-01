@@ -27,7 +27,7 @@ public class _101 {
     }
 
     // 递归法
-    public boolean isSymmetric1(TreeNode root) {
+    public boolean isSymmetric(TreeNode root) {
         return compare(root.left, root.right);
     }
 

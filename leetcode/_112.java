@@ -26,8 +26,13 @@ public class _112 {
         }
     }
 
-    // 递归
-    public boolean hasPathSum1(TreeNode root, int targetSum) {
+    /**
+     * 递归
+     * 
+     * 每次向下会减去上一次已经加上的值
+     * 到叶节点的时候就只需要判断跟当前是否相等即可
+     */
+    public boolean hasPathSum(TreeNode root, int targetSum) {
         if (root == null) {
             return false;
         }
@@ -39,37 +44,7 @@ public class _112 {
             }
         }
 
-        return hasPathSum1(root.left, targetSum - root.val) || hasPathSum1(root.right, targetSum - root.val);
-    }
-
-    // 迭代，再用一个队列存储根节点到当前节点的路径和
-    public boolean hasPathSum(TreeNode root, int sum) {
-        if (root == null) {
-            return false;
-        }
-        Queue<TreeNode> queNode = new LinkedList<TreeNode>();
-        Queue<Integer> queVal = new LinkedList<Integer>();
-        queNode.offer(root);
-        queVal.offer(root.val);
-        while (!queNode.isEmpty()) {
-            TreeNode now = queNode.poll();
-            int temp = queVal.poll();
-            if (now.left == null && now.right == null) {
-                if (temp == sum) {
-                    return true;
-                }
-                continue;
-            }
-            if (now.left != null) {
-                queNode.offer(now.left);
-                queVal.offer(now.left.val + temp);
-            }
-            if (now.right != null) {
-                queNode.offer(now.right);
-                queVal.offer(now.right.val + temp);
-            }
-        }
-        return false;
+        return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
     }
 
 }

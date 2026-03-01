@@ -1,6 +1,7 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
-import java.util.Stack;
 
 public class _94 {
     public static void main(String[] args) {
@@ -49,12 +50,12 @@ public class _94 {
         if (root == null) {
             return res;
         }
-        Stack<TreeNode> stack = new Stack<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
         TreeNode node = root;
 
         while (node != null || !stack.isEmpty()) {
             while (node != null) {
-                stack.add(node);
+                stack.push(node);
                 node = node.left;
             }
             node = stack.pop();

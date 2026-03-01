@@ -25,7 +25,7 @@ public class _98 {
     }
 
     // 方法一： 递归判断
-    public boolean isValidBST1(TreeNode root) {
+    public boolean isValidBST(TreeNode root) {
         return helper(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 

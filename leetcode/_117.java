@@ -27,17 +27,17 @@ public class _117 {
         }
     };
 
-    public Node connect1(Node root) {
+    public Node connect(Node root) {
         if (root == null) {
             return root;
         }
         Queue<Node> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
-            int currentLevelSize = queue.size();
-            for (int i = 0; i < currentLevelSize; i++) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
                 Node node = queue.poll();
-                if (i != currentLevelSize - 1) {
+                if (i != size - 1) {
                     node.next = queue.peek();
                 } else {
                     node.next = null;

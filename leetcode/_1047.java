@@ -10,15 +10,15 @@ public class _1047 {
         Deque<Character> stack = new ArrayDeque<>();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < s.length(); i++) {
-            if (stack.size() == 0 || stack.getLast() != s.charAt(i)) {
-                stack.add(s.charAt(i));
+            if (stack.size() == 0 || stack.peek() != s.charAt(i)) {
+                stack.push(s.charAt(i));
             } else {
-                stack.removeLast();
+                stack.pop();
             }
         }
 
         while (!stack.isEmpty()) {
-            sb.append(stack.removeFirst());
+            sb.append(stack.removeLast());
         }
 
         return sb.toString();

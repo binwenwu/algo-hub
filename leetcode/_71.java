@@ -1,63 +1,51 @@
-import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.LinkedList;
 
 public class _71 {
     public static void main(String[] args) {
         _71 s = new _71();
         String path = "/home/";
-        System.out.println(s.simplifyPath1(path));
+        System.out.println(s.simplifyPath(path));
     }
 
-    public String simplifyPath1(String path) {
-        Deque<String> deque = new ArrayDeque<>();
-        String[] paths = path.split("/");
+    /**
+     * 先进行分词，然后依次进行入栈出栈的判断，判断规则：
+     * 
+     * 普通目录 → 入栈
+     * ".." → 出栈
+     * "." 或空字符串 → 忽略
+     */
+    public String simplifyPath(String path) {
+        Deque<String> stack = new LinkedList<>();
 
-        for (String dir : paths) {
-            if (dir.equals("") || dir.equals(".")) {
-                // 忽略空字符串和当前目录
+        String[] parts = path.split("/");
+
+        for (String part : parts) {
+
+            if (part.equals("") || part.equals(".")) {
                 continue;
-            } else if (dir.equals("..")) {
-                if (!deque.isEmpty()) {
-                    deque.removeLast();
+            }
+
+            if (part.equals("..")) {
+                if (!stack.isEmpty()) {
+                    stack.pop();
                 }
             } else {
-                deque.addLast(dir); // 加入有效路径段
+                stack.push(part);
             }
         }
 
-        // 构建结果路径
-        if (deque.isEmpty())
-            return "/";
-
-        StringBuilder sb = new StringBuilder();
-        for (String dir : deque) {
-            sb.append("/").append(dir);
-        }
-
-        return sb.toString();
-    }
-
-    // 用数组模拟栈
-    public String simplifyPath2(String path) {
-        String[] dirs = path.split("/");
-        int index = 0;
-        for (String dir : dirs) {
-            if (dir.equals(".") || dir.isEmpty()) {
-                continue;
-            }
-            if (dir.equals("..")) {
-                index = Math.max(0, index - 1);
-            } else {
-                dirs[index++] = dir;
-            }
-        }
-        if (index == 0) {
+        if (stack.isEmpty()) {
             return "/";
         }
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < index; i++) {
-            sb.append("/").append(dirs[i]);
+
+        StringBuilder res = new StringBuilder();
+
+        while (!stack.isEmpty()) {
+            res.append("/").append(stack.pop());
         }
-        return sb.toString();
+
+        return res.toString();
     }
+
 }
