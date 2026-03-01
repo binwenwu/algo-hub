@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class _146 {
     public static void main(String[] args) {
-
+    
     }
 }
 
