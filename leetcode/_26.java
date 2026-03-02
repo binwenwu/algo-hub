@@ -1,6 +1,6 @@
 public class _26 {
     public static void main(String[] args) {
-        
+
     }
 
     // 双指针
@@ -15,7 +15,6 @@ public class _26 {
                 fast++;
             }
         }
-
         return slow;
     }
 }

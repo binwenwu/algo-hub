@@ -18,8 +18,6 @@ public class _125 {
                 right--;
             }
 
-            System.out.println(s.charAt(left));
-
             if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
                 return false;
             }
