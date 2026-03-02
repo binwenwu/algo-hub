@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class _105 {
 
-    // 自己的方法，BFS
+    // BFS
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         boolean[][] graph;

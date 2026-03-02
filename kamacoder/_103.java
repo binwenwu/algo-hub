@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
 public class _103 {
     static int[][] directions = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } }; // 上, 下, 左, 右
     static int[][] island;
@@ -16,7 +15,7 @@ public class _103 {
             if (nextX < 0 || nextX >= island.length || nextY < 0 || nextY >= island[0].length) {
                 continue;
             }
-            if (!visited[nextX][nextY] && island[nextX][nextY] > island[x][y]) {
+            if (!visited[nextX][nextY] && island[nextX][nextY] >= island[x][y]) {
                 visited[nextX][nextY] = true;
                 dfs(nextX, nextY, visited);
             }
