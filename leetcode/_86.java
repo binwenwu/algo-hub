@@ -24,8 +24,9 @@ public class _86 {
             head = head.next;
         }
 
-        // 关键：断开 big 尾巴
+        // 关键：断开两者的尾巴
         big.next = null;
+        small.next = null;
 
         // 拼接
         small.next = bigDummy.next;

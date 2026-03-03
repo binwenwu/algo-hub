@@ -9,21 +9,22 @@ public class _228 {
      */
     public List<String> summaryRanges(int[] nums) {
         List<String> ret = new ArrayList<String>();
-        int i = 0;
+        int left = 0;
         int n = nums.length;
-        while (i < n) {
-            int low = i;
-            i++;
-            while (i < n && nums[i] == nums[i - 1] + 1) {
-                i++;
+        while (left < n) {
+            int right = left + 1;
+            while (right < n && nums[right] == nums[right - 1] + 1) {
+                right++;
             }
-            int high = i - 1;
+            right--;
 
-            if (low < high) {
-                ret.add(nums[low] + "->" + nums[high]);
+            if (left < right) {
+                ret.add(nums[left] + "->" + nums[right]);
             } else {
-                ret.add(Integer.toString(nums[low]));
+                ret.add(Integer.toString(nums[left]));
             }
+
+            left = right + 1;
         }
         return ret;
     }

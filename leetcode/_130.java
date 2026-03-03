@@ -5,8 +5,8 @@ public class _130 {
      * 
      * 1. 把所有连到边界的 O 标记成临时字符（比如 #）
      * 2. 遍历整个棋盘
-     * 剩下的 O → 变成 X
-     * 还原标记
+     *      剩下的 O → 变成 X
+     *      把 # 还原成 O
      */
     public void solve(char[][] board) {
         int m = board.length;
