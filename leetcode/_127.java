@@ -24,9 +24,7 @@ public class _127 {
 
         queue.offer(beginWord);
         visited.add(beginWord);
-
         int step = 0;
-
         while (!queue.isEmpty()) {
             step++;
             int size = queue.size();

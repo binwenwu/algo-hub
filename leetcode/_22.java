@@ -2,9 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class _22 {
-    public static void main(String[] args) {
-
-    }
 
     List<String> res = new ArrayList<>();
     StringBuilder path = new StringBuilder();
