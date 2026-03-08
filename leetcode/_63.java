@@ -3,7 +3,7 @@ public class _63 {
 
     }
 
-    public int uniquePathsWithObstacles1(int[][] obstacleGrid) {
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
         int m = obstacleGrid.length;
         int n = obstacleGrid[0].length;
         int[][] dp = new int[m][n];
