@@ -26,66 +26,35 @@ public class _113 {
         }
     }
 
-    // 递归1
+    /**
+     * 1 进入节点
+     * 2 加入路径
+     * 3 更新路径和
+     * 4 如果是叶子并满足条件 → 加入答案
+     * 5 递归左右子树
+     * 6 回溯（删除路径最后一个元素）
+     */
     List<List<Integer>> res = new ArrayList<>();
+    List<Integer> path = new ArrayList<>();
 
-    public List<List<Integer>> pathSum1(TreeNode root, int targetSum) {
-        if (root == null) {
-            return res;
-        }
-        List<Integer> path = new ArrayList<>();
-        dfs(root, targetSum, path);
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        dfs(root, targetSum);
         return res;
     }
 
-    private void dfs(TreeNode node, int targetSum, List<Integer> path) {
+    private void dfs(TreeNode node, int target) {
+        if (node == null)
+            return;
+
         path.add(node.val);
 
-        if (node.left == null && node.right == null) {
-            if (node.val == targetSum) {
-                res.add(path);
-            } else {
-                return;
-            }
-        }
-        if (node.left != null) {
-            dfs(node.left, targetSum - node.val, new ArrayList<>(path)); // 这个地方可以用回溯，避免一直创建新的list
-        }
-
-        if (node.right != null) {
-            dfs(node.right, targetSum - node.val, new ArrayList<>(path)); // 这个地方可以用回溯，避免一直创建新的list
-        }
-    }
-
-    // 递归2
-    List<List<Integer>> res2 = new ArrayList<>();
-
-    public List<List<Integer>> pathSum2(TreeNode root, int targetSum) {
-        if (root == null) {
-            return res2;
-        }
-        List<Integer> path = new ArrayList<>();
-        preDfs(root, targetSum, path);
-        return res2;
-    }
-
-    private void preDfs(TreeNode node, int targetSum, List<Integer> path) {
-        path.add(node.val);
-
-        if (node.left == null && node.right == null) {
-            if (node.val == targetSum) {
-                res2.add(new ArrayList<>(path));
-            } else {
-                return;
-            }
-        }
-        if (node.left != null) {
-            preDfs(node.left, targetSum - node.val, path);
+        if (node.left == null && node.right == null && target == node.val) {
+            res.add(new ArrayList<>(path));
             path.remove(path.size() - 1); // 回溯
-        }
-
-        if (node.right != null) {
-            preDfs(node.right, targetSum - node.val, path);
+            return;
+        } else {
+            dfs(node.left, target - node.val);
+            dfs(node.right, target - node.val);
             path.remove(path.size() - 1); // 回溯
         }
     }
