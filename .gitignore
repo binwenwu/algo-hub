@@ -2,3 +2,5 @@
 .DS_Store/
 .metals/
 .idea/
+*.iml
+out/
