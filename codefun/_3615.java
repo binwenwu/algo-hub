@@ -22,13 +22,12 @@ public class _3615 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int T = sc.nextInt();
-        StringBuilder sb = new StringBuilder();
         while (T-- > 0) {
             int n = sc.nextInt();
             long r = sc.nextLong();
             if (r > n) {
                 // 所有长度为n的串都合法
-                sb.append(power(2, n)).append('\n');
+                System.out.println(power(2, n));
             } else {
                 int R = (int) r; // r <= n <= 1000，可以安全转 int
                 // dp[i][j] = 长度为 i 的合法串中，末尾恰好有 j 个连续1 的方案数
@@ -53,10 +52,9 @@ public class _3615 {
                 for (int j = 0; j < R; j++) {
                     ans = (ans + dp[n][j]) % MOD;
                 }
-                sb.append(ans).append('\n');
+                System.out.println(ans);
             }
         }
-        System.out.print(sb);
         sc.close();
     }
 
