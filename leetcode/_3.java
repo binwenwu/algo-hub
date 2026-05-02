@@ -1,6 +1,5 @@
-
-
 public class _3 {
+
     public static void main(String[] args) {
         _3 s = new _3();
         s.lengthOfLongestSubstring("pwwkew");
@@ -15,6 +14,7 @@ public class _3 {
         int res = 0;
         int left = 0;
         int right;
+
         for (right = 0; right < len; right++) {
             while (has[charArray[right]]) {
                 has[charArray[left]] = false;

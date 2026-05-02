@@ -5,8 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class _3524 {
+
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(
+            new InputStreamReader(System.in)
+        );
         int n = Integer.parseInt(br.readLine().trim());
 
         StringBuilder out = new StringBuilder();
@@ -15,14 +18,13 @@ public class _3524 {
             String s = br.readLine().trim();
 
             // 统计 A, L, I 的个数，其他忽略
-            int cntA = 0, cntL = 0, cntI = 0;
+            int cntA = 0,
+                cntL = 0,
+                cntI = 0;
             for (char c : s.toCharArray()) {
-                if (c == 'A')
-                    cntA++;
-                else if (c == 'L')
-                    cntL++;
-                else if (c == 'I')
-                    cntI++;
+                if (c == 'A') cntA++;
+                else if (c == 'L') cntL++;
+                else if (c == 'I') cntI++;
             }
 
             // 按 ALI 循环输出
@@ -48,6 +50,3 @@ public class _3524 {
         System.out.print(out);
     }
 }
-
-
-
