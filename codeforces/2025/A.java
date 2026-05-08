@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class A {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int q = scanner.nextInt();
@@ -39,7 +40,11 @@ public class A {
             strategy2 = strategy1;
         } else {
             // 输入公共前缀 + 复制 + 完成剩余部分
-            strategy2 = commonPrefixLength + 1 + (s.length() - commonPrefixLength) + (t.length() - commonPrefixLength);
+            strategy2 =
+                commonPrefixLength +
+                1 +
+                (s.length() - commonPrefixLength) +
+                (t.length() - commonPrefixLength);
         }
 
         return Math.min(strategy1, strategy2);

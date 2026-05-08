@@ -1,5 +1,3 @@
-package nowcoder.alibaba;
-
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -7,8 +5,10 @@ import java.util.Scanner;
  * https://www.nowcoder.com/exam/test/95052764/detail?pid=30440638
  */
 public class _5 {
+
     // 用来存储每个员工的能力
     static class Node {
+
         int A; // 推理能力
         int B; // 阅读能力
     }
@@ -23,7 +23,6 @@ public class _5 {
      * Bi + Bj ≥ T
      */
     static boolean check(int T) {
-
         // 双指针从数组右侧开始
         int j = n - 1;
 
@@ -32,7 +31,6 @@ public class _5 {
 
         // 枚举员工 i
         for (int i = 0; i < n; i++) {
-
             /*
              * 当 arr[j].A ≥ T - arr[i].A 时
              * 说明：
@@ -40,7 +38,6 @@ public class _5 {
              * 因此 j 可以作为候选人
              */
             while (j >= 0 && arr[j].A >= T - arr[i].A) {
-
                 // 更新这些候选人中的最大 B
                 maxB = Math.max(maxB, arr[j].B);
 
@@ -50,13 +47,13 @@ public class _5 {
             /*
              * 如果存在某个 j 满足：
              * Bj ≥ T - Bi
-             * 
+             *
              * 那么：
              * Bi + Bj ≥ T
-             * 
+             *
              * 同时上面已经保证：
              * Ai + Aj ≥ T
-             * 
+             *
              * 因此找到合法员工对
              */
             if (maxB >= T - arr[i].B) {
@@ -69,7 +66,6 @@ public class _5 {
     }
 
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
 
         n = sc.nextInt();
@@ -97,19 +93,15 @@ public class _5 {
         int ans = 0;
 
         while (l <= r) {
-
             int mid = (l + r) / 2;
 
             // 如果存在员工对满足 ≥ mid
             if (check(mid)) {
-
                 ans = mid;
 
                 // 尝试更大的答案
                 l = mid + 1;
-
             } else {
-
                 // mid 不可行，缩小范围
                 r = mid - 1;
             }
@@ -118,7 +110,7 @@ public class _5 {
         /*
          * 原题答案是：
          * min((Ai+Aj)/2 , (Bi+Bj)/2)
-         * 
+         *
          * 我们求的是：
          * min(Ai+Aj , Bi+Bj)
          * 所以最后需要 /2

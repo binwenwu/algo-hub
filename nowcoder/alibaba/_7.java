@@ -1,12 +1,10 @@
-package nowcoder.alibaba;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 /**
  * https://www.nowcoder.com/exam/test/95338879/detail?pid=30440590
- * 
+ *
  * DFS
  */
 public class _7 {

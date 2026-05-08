@@ -1,5 +1,3 @@
-package nowcoder.alibaba;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -8,9 +6,10 @@ import java.util.Scanner;
  * https://www.nowcoder.com/exam/test/95338879/detail?pid=30440590
  */
 public class _6 {
+
     /**
      * 流程：
-     * 
+     *
      * 遍历每个物品 i
      * 计算它的 key（差分向量）
      * 同时计算它的“相反向量”（negKey）
@@ -55,6 +54,5 @@ public class _6 {
         System.out.println(res);
 
         sc.close();
-
     }
 }

@@ -1,5 +1,3 @@
-package nowcoder.alibaba;
-
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -7,13 +5,13 @@ import java.util.Scanner;
  * https://www.nowcoder.com/exam/test/95052764/detail?pid=30440638
  */
 public class _1 {
+
     static class Node {
+
         int x;
         int y;
 
-        Node() {
-
-        }
+        Node() {}
 
         Node(int x, int y) {
             this.x = x;
@@ -25,7 +23,7 @@ public class _1 {
      * 先按 x 排序， 其中为了防止 x 相等时错误选择， x 相等时，需按 y 降序
      * (1,2) (1,3)
      * 这种 x 相同但 y 增长的非法情况被 LIS 选中
-     * 
+     *
      * 排序完后，就只要从 y 序列中找最长递增子序列即可
      */
     public static void main(String[] args) {
@@ -53,21 +51,20 @@ public class _1 {
 
             /**
              * 传统 DP 会超时,采用 贪心 + 二分 可以降低时间复杂度
-             * 
+             *
              * 同样长度的序列
              * 保留结尾最小的
-             * 
+             *
              * 能接就接，接了后，len++
              * 不能接就替换
              * 替换第一个 >= 当前数的位置
-             * 
+             *
              */
 
             int[] dp = new int[n]; // dp[k] = 长度为 k+1 的递增子序列的最小结尾，因为结尾更小，更容易接新数
             int len = 0;
 
             for (int i = 0; i < n; i++) {
-
                 int y = xy[i].y;
 
                 int l = 0;

@@ -1,5 +1,3 @@
-package nowcoder.alibaba;
-
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -8,10 +6,12 @@ import java.util.Scanner;
  * https://www.nowcoder.com/exam/test/95052764/detail?pid=30440638
  */
 public class _4 {
+
     static int[] dx = { 1, -1, 0, 0 };
     static int[] dy = { 0, 0, 1, -1 };
 
     static class Node {
+
         int x, y, k, dist;
 
         Node(int x, int y, int k, int dist) {
@@ -26,7 +26,6 @@ public class _4 {
      * BFS + 多一维状态（飞行器使用次数）
      */
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
 
         int n = sc.nextInt();
@@ -34,7 +33,8 @@ public class _4 {
         sc.nextLine();
         char[][] grid = new char[n][m];
 
-        int sx = 0, sy = 0;
+        int sx = 0,
+            sy = 0;
 
         for (int i = 0; i < n; i++) {
             String s = sc.nextLine();
@@ -57,7 +57,6 @@ public class _4 {
         visited[sx][sy][0] = true;
 
         while (!q.isEmpty()) {
-
             Node cur = q.poll();
 
             int x = cur.x;
@@ -72,15 +71,12 @@ public class _4 {
 
             // 四方向移动
             for (int d = 0; d < 4; d++) {
-
                 int nx = x + dx[d];
                 int ny = y + dy[d];
 
-                if (nx < 0 || nx >= n || ny < 0 || ny >= m)
-                    continue;
+                if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
 
-                if (grid[nx][ny] == '#')
-                    continue;
+                if (grid[nx][ny] == '#') continue;
 
                 if (visited[nx][ny][k]) {
                     continue;
@@ -88,12 +84,10 @@ public class _4 {
 
                 visited[nx][ny][k] = true;
                 q.offer(new Node(nx, ny, k, dist + 1));
-
             }
 
             // 对称飞行
             if (k < 5) {
-
                 /**
                  * 数组一般是 0-index，所以代码里要变成：
                  * x' = n - 1 - x
@@ -103,7 +97,6 @@ public class _4 {
                 int ny = m - 1 - y;
 
                 if (grid[nx][ny] != '#' && !visited[nx][ny][k + 1]) {
-
                     visited[nx][ny][k + 1] = true;
                     q.offer(new Node(nx, ny, k + 1, dist + 1));
                 }
@@ -111,6 +104,5 @@ public class _4 {
         }
 
         System.out.println(-1);
-
     }
 }
